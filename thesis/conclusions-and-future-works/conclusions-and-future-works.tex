@@ -1,0 +1,28 @@
+\chapter{Conclusions and Future Work}\label{cha:conclusion}
+
+This paper presented the detailed beamforming optimization for RIS-aided DFRC system. Unlike existing works, 
+this is the first work that investigates the maximization of WSR and probing power. Two AO algorithms
+based on WMMSE and FP are proposed to solve the non-convex optimization problems for active and passive beamforming in seperated and shared deployments.
+The applied RIS model is not limited to the widely-used single connected model, but extended to a generalized group or fully connected RIS model.
+
+The simulation results validated the proposed algorithm's effectiveness and led to the following findings.
+\begin{enumerate}
+    \item In both separated and shared deployments, the RIS aids the system in achieving improved radar beampatterns and larger achievable region of WSR and probing power.
+    \item Compared with separated deployment, the shared deployment achieves significantly better beampattern and tradeoff because the antennas are fully exploited.
+    \item The fully connected RIS brings more improvements in terms of radar beampattern and achievable region than single connected RIS in Rayleigh channel, while its performance is the same as single connected RIS in LOS channel.
+    \item With the increase of the number of reflecting elements at RIS, the achievable region becomes larger but asymptotically reaches an upper limit.
+    \item Although the higher upper bound of WSR is achieved by RIS, the upper bound of probing power remains unchanged. The reason is that the probing power is totally determined by BS and therefore RIS essentially makes no difference.
+\end{enumerate}
+Some limitations in this project are valuable for future consideration.
+\begin{enumerate}
+    \item The gains of both beampattern and achievable region from RIS are essentially due to the upgrade of communication performance instead of radar performance or both.
+    \item The algorithm using scattering-reactance relationship to optimize group or fully connected RIS converges slow, which is quite impractical.
+    \item Compared to more representative metrics like detection and false-alarm probability, probing power is a simplistic metric to assess a radar performance.
+\end{enumerate}
+As RIS is only related to the channel between BS, users and radar targets, the radar metrics related to the channel should be chosen 
+in order to obtain gain from RIS. The conventional radar metrics including detection probability, false-alarm probability, and mean square error 
+are good candidates. However, as mentioned in Section \ref{sec:radar_metric}, these metrics are difficult to optimize. One potential 
+solution is machine learning techniques, which have attracted much attention in RIS research due to their learning capability and large
+search-space \cite{liu2020RIS}. For example, in both \cite{huang2020reconfigurable} and \cite{taha2020deep}, the achievable rate 
+is set as reward and maximized by reinforcement learning model. Therefore, although the metrics are complicated, the optimal solution 
+may be found by designing a machine learning model properly, which is one of future research opportunities.

@@ -1,0 +1,118 @@
+\subsection{Communications and Radar Spectrum Sharing}
+CRSS is the technique that allows the communications and radar systems 
+to work in the same frequency band. It can be categorized into coexistence 
+and co-design
+
+CRSS is motivated by solving the coexistence problem of radar and 
+communication systems \cite{feng2020survey}. In the coexistence cases, the most significant 
+issue is the interference cancellation, so that the two systems can 
+work without imposing interference on each other. Many methods have been investigated, such as 
+optimizing the beamforming \cite{rihan2018optimum,qian2018joint,li2016optimum,li2017joint,liu2018mimo}, 
+nulling interference at transmitter \cite{sodagari2012projection, mahal2017spectral}, 
+and adaptively eliminating interference at the receiver \cite{deng2013interference,meager2016estimation,nartasilpa2018let}.
+
+Co-design is to integrate the two systems into a single platform and design a dual-functional radar and communications (DFRC) system,
+where target sensing and communication can be performed simultaneously \cite{Hassanien2019DFRC}. There are two methods to achieve it:
+radar- and communication-centric.
+
+The main idea of radar-centric DFRC is embedding the information into the radar waveform, without
+interfering with the radar function. For example, the information can be embedded using beamforming modulation and index modulation \cite{Hassanien2019DFRC}. 
+Hassanien et al. \cite{Hassanien2018} considered the two-way communication where the communication information is embedded in 
+the radar signal emitting in the direction of users.
+However, the rate of communications is restricted by the pulse repetition frequency (PRF) of radar,
+because each radar pulse can only support a small number of communication symbols \cite{liu2020beamforming}.   
+
+In communication-centric DFRC, the target data is extracted from the echoed communication waveform. 
+All the commonly-used communication waveforms can be used for this task \cite{liu2020tutorial}. 
+As opposed to the radar-centric method, the communication-centric method 
+is capable of supporting a higher communication rate and guaranteeing radar performance by carefully designing the waveform \cite{liu2020beamforming}. 
+Therefore, in this project, we mainly focus on waveform design for communication-centric DFRC.
+
+Many works have been done in the field of communication-centric DFRC \cite{liu2018beamforming,liu2020beamforming,xu2020tradeoff}. 
+For example, in \cite{liu2018beamforming}, Liu et al. designed a DFRC platform that supports probing several radar targets and serving several communication 
+users simultaneously. Specifically, two platform deployments were proposed: separated deployment and shared deployment. In the former, 
+the antennas are separated into two groups and each group performs radar or communication function, while shared 
+deployment only transmits communication waveform which is designed to approximate a pre-designed beampattern or 3dB-main beamwidth. 
+The shared deployment was also considered in \cite{liu2020beamforming}, but an additional jointly precoded
+radar waveform is added on communication waveform to maximize the degree of freedom (DoF) of radar. Apart from achieving the desired beampattern, the waveform was also 
+designed to minimize the mean-squared cross-correlation, which can suppress the interference from undesired targets. However, in 
+both \cite{liu2018beamforming} and \cite{liu2020beamforming}, the SINR was used as the communication metric, instead of more representative 
+metrics like weighted sum rate (WSR). Xu et al. \cite{xu2020tradeoff} first considered WSR maximization in DFRC context, where the 
+tradeoff between probing power at target and WSR were investigated. Compared with beampattern approximation in \cite{liu2018beamforming} and \cite{liu2020beamforming},
+probing power maximization lead to clearer tradeoff comparison. Thus,
+the probing power at target and WSR were used as radar and communication metrics in this project.
+
+% Liu et al. \cite{liu2018beamforming} designed a joint beamforming method, which 
+% is capable of formulating the desired beampattern of radar function under the constraints of SINR and power of downlink communication.
+% Apart from the desired beampattern, an SDR-based optimization algorithm proposed by Liu et al. \cite{liu2020beamforming} also 
+% minimizes the cross correlation pattern of signal in different directions. Meanwhile, another sub-optimal zero forcing based method 
+% is proposed, which has lower complexity. Xu et al. \cite{xu2020tradeoff} considered the most representative communication 
+% metric Weighted Sum Rate (WSR) instead of the SINR. They also exploited the probing power to replace desired beampattern as the
+% radar metric, which can reveal the trade-off relationship in DFRC system more clearly. A WMMSE and SDP based optimization algorithm 
+% was proposed to maximize the WSR and probing power simultaneously.
+
+\subsection{Reconfigurable Intelligent Surface}
+As was aforementioned, many works considered the joint beamforming design for RIS-aided communication system \cite{wu2019IRS,guo2019WSR,guo2020ris}.
+Specifically, a RIS-aided wireless communication was investigated in \cite{wu2019IRS}, where both single- and multiple-user cases are considered. 
+With the additional RIS-aided channel between BS and users, the authors tried to use as low transmit power as possible but guaranteed the SINR at users. 
+Numerical results indicate that the number of RF chains can be significantly reduced in a RIS-aided MIMO system 
+when the performance is the same as massive MIMO. Similarly, WSR is also more representative than SINR in the context of RIS-aided communication system.
+Therefore, Guo et al. \cite{guo2019WSR} first studied the maximization of WSR for all users in the context of RIS-aided communication system.
+To solve the non-convex and NP-hard WSR maximization problem, an algorithm using fractional programming (FP) \cite{shen2018fractional,shen2018fractional2} and alternating optimization (AO) was proposed.
+The work \cite{guo2020ris} extended the method of \cite{guo2019WSR}, where the beamformings are jointly designed to maximize the WSR with imperfect channel state information (CSI).
+
+% As was aforementioned, many works considered the joint beamforming design at RIS-aided communication system \cite{wu2019IRS,guo2019WSR,guo2020ris}.
+% Specifically, Wu and Zhang \cite{wu2019IRS} investigated RIS-aided wireless system in both single and multiple user cases, 
+% where the active and passive beamforming are jointly designed to minimize transmit power under the constraint of SINR at users. 
+% Numerical results show that the number of RF-chains can be significantly reduced in RIS-aided MIMO system 
+% when the performance is the same as massive MIMO. Similarly, WSR is also more representative than SINR in context of RIS-aided communication system.
+% Therefore, Guo et al. \cite{guo2019WSR} first studied the maximization of WSR for all users by jointly designing active and passive beamforming.
+% Although WSR maximization problem is NP-hard, an algorithm was proposed to solve it based on fractional programming \cite{shen2018fractional,shen2018fractional2} and alternating optimization.
+% The work \cite{guo2020ris} extended the method of \cite{guo2019WSR}, where the beamforming are joint designed to maximize the WSR when 
+% the channel state information (CSI) is imperfect.
+
+% More specifically, Wu and Zhang \cite{wu2019IRS} proposed an Alternating Optimization based methods to jointly optimize transmit beamforming at BS and 
+% passive beamforming at RIS in both single and multiple user cases. Numerical results shows that transmit power at BS is significantly
+% reduced in RIS-aided MIMO system when the same performance is achieved as massive MIMO system. 
+% Guo et al. \cite{guo2019WSR} considered the WSR as the communication metric and proposed a two-stage algorithm based on Fractional Programming
+% to jointly optimize transmit and passive beamforming. The imperfect CSI is investigated in \cite{guo2020ris}.
+
+Recently, RIS also shows benefits in aiding radar system \cite{lu2021intelligent,buzzi2021radar,aubry2021reconfigurable,buzzi2021foundations}.
+In \cite{lu2021intelligent}, the active beamforming for target detection at MIMO radar and passive beamforming at a co-located RIS are optimized
+separately, in order to increase the detection performance. A RIS-aided detection algorithm was also proposed and it is shown that RIS can result in 
+better Cramér–Rao bound (CRB). Unlike \cite{lu2021intelligent} wherein the RIS helps to receive the reflected signal at radar receiver, 
+Buzzi et al. \cite{buzzi2021radar} designed a system wherein the radar transmits or receives through two beams, one towards the target and another towards RIS.
+It is theoretically proved that RIS can provide improvement to received SNR by phase-aligning the echo signals no matter the radar and RIS are closely-
+or widely-spaced. When the LOS between radar and target is blocked, an artificial path can be established via RIS. Aubry et al. \cite{aubry2021reconfigurable}
+investigated this scenario by discussing the data acquisition, resolution issues of estimated parameters, and size and system parameters of RIS.
+By considering all the aforementioned RIS-aided scenarios, a general signal model was introduced in \cite{buzzi2021foundations}, which can 
+cover the following conditions: one or two RIS's, mono-static or bi-static radar configuration, and with or without LOS. They also 
+optimized the passive beamforming at RIS to improve the detection probability with the fixed false-alarm probability.
+
+In most existing investigations about RIS-aided systems, including the aforementioned ones, the single connected reconfigurable impedance network is widely applied to model 
+the RIS. Recently, Shen et al. \cite{shen2020modeling} proposed a generalized model in which the RIS network is group or fully connected. 
+This novel model significantly outperforms the single connected RIS network in terms of received power. This project also investigated the potential benefits of this generalized
+RIS model in the RIS-aided DFRC system.
+
+\subsection{RIS-aided DFRC}
+The RIS-aided DFRC system is still an open research area with few works \cite{wang2020ris, jiang2021dfrc,wang2021joint}.
+Wang et al. \cite{wang2020ris} first investigate a RIS-aided radar-communication coexistence, where the radar detection probability
+is maximized by optimizing active and passive beamforming and the received SINR at communication users is guaranteed.
+It was proved that the detection probability maximization problem can be relaxed to a interference minimization problem of received echos at radar. 
+In \cite{jiang2021dfrc}, the DFRC system is first considered. Similarly, the SINR of echos is maximized under users' SINR constraints.
+A two-stage algorithm was designed for the non-convex joint beamforming optimization and the improvement of 
+SINR in both radar and communication. RIS-aided DFRC system was also studied in \cite{wang2021joint}.
+Unlike the previous two works, the beamforming is designed to form a pre-designed beampattern and eliminate the multi-user interference (MUI).
+The tradeoff between radar and communication performance was also investigated. Nevertheless, as mentioned before, WSR is a more representative metric than SINR and MUI
+in the context of both DFRC and RIS-aided system. Thus, in this project, the objective is to maximize the WSR at users in RIS-adied DFRC system.
+
+% The RIS-aided DFRC system is still an open research area with few works \cite{wang2020ris, jiang2021dfrc,wang2021joint}.
+% Wang et al. \cite{wang2020ris} first investigate a RIS-aided radar-communication coexistence system and the active and passive
+% beamforming is jointly designed to maximize radar detection probability under users' SINR constraints. It was proved that the detection 
+% probability maximization problem can be relaxed to a interference minimization problem of received echos at radar. In \cite{jiang2021dfrc}, the 
+% DFRC system is first considered. Similarly, the SINR of echos is maximized under users' SINR constraints.
+% A two-stage algorithm was proposed to solve the non-convex active and passive beamforming optimization problem and the improvement of 
+% SINR in both radar and communication systems was shown by the simulation results. RIS-aided DFRC system was also studied in \cite{wang2021joint}.
+% Unlike the previous two works, the beamforming is designed to achieve a desired beampattern and minimize the multi-user interference (MUI).
+% The tradeoff between radar and communication performance was also investigated. Nevertheless, as mentioned before, WSR is a more representative metric than SINR and MUI
+% in context of both DFRC and RIS-aided system. Thus, in this project, the objective is to maximize the WSR at users in RIS-adied DFRC system.

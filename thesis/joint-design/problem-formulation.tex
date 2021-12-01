@@ -1,0 +1,52 @@
+In this project, the perfect channel state information (CSI) is assumed to be known. The CSI acquisition is
+challenging in RIS-aided system because of the passive nature of RIS, which means it requires the estimation of 
+a large number of unknown parameters cause by RIS \cite{liu2020RIS}. However, this problem can be tackled by deep learning 
+techniques such as deep denoising neural network \cite{liu2020deep} or convolutional neural network \cite{elbir2020deep}.
+
+When CSI is known, the problem of transmission optimization and RIS optimization in separated deployment is formulated as
+
+\begin{subequations}\label{problem:seperated_problem}
+    \begin{align}
+        \label{eqn:seperated_problem_obj}
+        \max_{\mathbf{P},\mathbf{R}_{\bf q},\mathbf{\Theta}} \quad  & \rho\sum_{k=1}^K \mu_k R_k(\mathbf{P},\mathbf{R}_{\bf q},\mathbf{\Theta}) + \mathbf{a}_r^H(\varphi_m)\mathbf{R}_{\bf q} \mathbf{a}_r(\varphi_m) 
+         + \mathbf{a}_c^H(\varphi_m)\mathbf{P}\mathbf{P}^H\mathbf{a}_c(\varphi_m)\\
+        \label{eqn:seperated_problem_constant_modulus} 
+        \mathrm{s.t.} \quad &\mathrm{diag}(\mathbf{R}_{\bf q}) = \frac{P_r}{M_r}\mathbf{1}^{M_r \times 1},\\
+        \label{eqn:seperated_problem_power_budget}
+        &\mathrm{Tr} (\mathbf{P}\mathbf{P}^H) \leq P_c,\\
+        \label{eqn:seperated_problem_semidefinite}
+        &\mathbf{R}_{\bf q} \succeq 0, {\bf R}_{\bf q} = {\bf R}_{\bf q}^H, \\
+        \label{eqn:seperated_problem_reflecting_1}
+        &{\bf \Theta} = \mathrm{diag}({\bf \Theta}_1,{\bf \Theta}_2,...,{\bf \Theta}_G),\\
+        \label{eqn:seperated_problem_reflecting_2}
+        &{\bf \Theta}_g = {\bf \Theta}_g^T, {\bf \Theta}_g^H{\bf \Theta}_g = {\bf I}, \forall g,
+    \end{align}
+\end{subequations}
+where the first part of \eqref{eqn:seperated_problem_obj} is the WSR and the rest is the probing power
+in direction $\varphi_m$. Both of them are maximized with the regularization parameter $\rho$.
+\eqref{eqn:seperated_problem_constant_modulus} is the constant-modulus constraint imposed by radar, so that the optimal
+low peak-to-average power ratio is guaranteed and the radar signal distortion is therefore reduced \cite{liu2020tutorial}. 
+\eqref{eqn:seperated_problem_power_budget} is the overall power budget constraint imposed by communications, and \eqref{eqn:seperated_problem_semidefinite}
+constraints the covariance matrix ${\bf{R}}_{\bf q}$ to be Hermitian and positive semidefinite. The last two constraints
+are imposed by the RIS. After finding the optimal ${\bf R_q}$, the radar signal can be obtained by the method in \cite{luo2010semidefinite}.
+
+In shared deployment, the dual-function optimization problem is formulated as
+\begin{subequations}\label{problem:shared_problem}
+    \begin{align}
+      \label{eqn:shared_problem_obj} 
+      \max_{\check{\bf p}_1,...,\check{\bf p}_K} \quad &\rho \sum_{k=1}^K \mu_k \check{R}_k(\check{\bf p}_1,...,\check{\bf p}_K,{\bf \Theta}) 
+      + {\bf a}^H(\varphi_m) \sum_{k=1}^K \check{\bf p}_k \check{\bf p}_k^H {\bf a}(\varphi_m)\\
+      \label{eqn:shared_problem_constant_modulus} 
+      \mathrm{s.t.} \quad &\mathrm{diag}\left( \sum_{k=1}^K \check{\bf p}_k \check{\bf p}_k^H \right) = \frac{P}{M}{\bf 1}^{M \times 1}, \\
+      \label{eqn:shared_problem_reflecting_1} 
+      & {\bf \Theta} = \mathrm{diag}({\bf \Theta}_1, {\bf \Theta}_2,..., {\bf \Theta}_G), \\
+      \label{eqn:shared_problem_reflecting_2} 
+      & {\bf \Theta}_{g}={\bf \Theta}_{g}^T, {\bf \Theta}_g^H {\bf \Theta}_g = {\bf I}, \forall g, 
+    \end{align}
+\end{subequations}
+where the WSR and probing power are also maximized with regularization parameter $\rho$. \eqref{eqn:shared_problem_constant_modulus} 
+is the constant-modulus constraint for MIMO radar. The overall power constraint is omitted because it is obviously satisfied when 
+the constant modulus is met. The last two constraints are for generalized RIS.
+
+The problems \eqref{problem:seperated_problem} and \eqref{problem:shared_problem} are essentially multi-objective optimization problems,
+which can lead to the tradeoff between different objectives, i.e., WSR and probing power.

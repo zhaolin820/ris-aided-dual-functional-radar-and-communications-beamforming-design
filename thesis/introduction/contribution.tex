@@ -1,0 +1,56 @@
+In this project, we propose an RIS-aided DFRC active and passive beamforming desgin, which enable communicating 
+with the downlink users and probing target in an interesting direction in both separated and shared deployments. 
+The following is a list of the project's major contributions.
+
+\begin{enumerate}
+    \item We propose a joint beamforming design at BS and RIS that maximizes WSR and the probing power at target for both separated and shared deployment.
+    % To the best of our knowledge, this is the first work that studies WSR maximization for RIS-aided DFRC system.
+    To our knowledge, this is the first study of WSR maximising for a RIS-aided DFRC system. 
+    As in \cite{xu2020tradeoff}, we also consider probing power as radar metric to make a clear tradeoff comparison. However, the logarithm 
+    form and additional radar signal term of WSR, the quadratic form of probing power, and the quadratic equality power constraint make the 
+    optimization of joint beamforming rather non-convex and elusive.
+
+    \item This is also the first work that investigates the novel group or fully connected RIS model in RIS-aided DFRC. This novel RIS model is capable of enhancing the SNR performance especially in the Rayleigh fading channel \cite{shen2020modeling}, 
+    but its potential benefits for enlarging achievable region of WSR and probing power in DFRC are studied in this project.
+    
+    \item We propose an AO algorithm for the proposed non-convex design in separated deployment.
+    As was proposed in \cite{xu2020tradeoff}, the active beamforming problem is reformulated to 
+    a semidefinite programming (SDP) problem using WMMSE framework. The passive beamforming 
+    problem is reformulated to an unconstrained problem based on Lagrangian dual transform \cite{shen2018fractional2}, quadratic transform \cite{shen2018fractional},
+    and scattering-reactance relationship \cite{shen2020modeling}. Compared with the passive beamforming optimization method in 
+    \cite{guo2019WSR}, this method is an extended version that considers an additional radar signal term and generalized RIS model.
+    
+    \item We propose another AO algorithm to solve the non-convex design for shared deployment. 
+    The optimal active beamforming can be obtained by WMMSE framework and semidefinite relaxation (SDR) \cite{luo2010semidefinite}. In contrast to 
+    the majorization-minimization (MM) method used in \cite{xu2020tradeoff}, which requires several steps to reach the optimal 
+    values, this SDR method only needs one step and therefore has lower complexity.
+    The passive beamforming is optimized using the same method as separated deployment.
+
+    % \item The simulation results have verified the effectiveness of the proposed algorithm. For both separated and shared deployments,
+    % the introduction of RIS helps the system to achieve better radar beampattern and larger achievable region of WSR and probing power at target.
+    % Compared with separated deployment, the shared deployment achieves significantly better tradeoff because the antennas are fully exploited.
+    % The fully connected RIS brings more improvements in terms of radar beampattern and achievable region than single connected RIS in 
+    % Rayleigh channel, while its performance is the same as single connected RIS in LOS channel.
+\end{enumerate}
+
+
+
+
+
+% \begin{enumerate}
+%     \item We propose a technique which is capable of maximizing the Weighted Sum Rate (WSR) of communication and the probing power in 
+%     an interesting direction of radar for the separated and shared deployment.
+%     Instead of SINR at each user used in \cite{jiang2021dfrc}, we use WSR since it is the most representative metric in communication.
+%     We also exploit the probing power to replace the received SINR of radar signal used in \cite{jiang2021dfrc}, which can provide more
+%     clear tradeoff comparison between communication and radar performance.
+%     \item We leverage a novel group or fully connected RIS model instead of the conventional signal connected model exploited in \cite{guo2019WSR,wu2019IRS,guo2020ris,jiang2021dfrc}.
+%     This novel RIS model is capable of enhancing the SNR performance especially in the Rayleigh fading channel \cite{shen2020modeling}, 
+%     but more benefits in DFRC system is investigate in this project.
+%     \item We propose a alternating optimization algorithm to solve the proposed non-convex design of separated deployment. The active beamforming problem is 
+%     reformulated to a semidefinite programming (SDP) problem using Weighted Minimum Mean Square Error (WMMSE) framework. The passive beamforming 
+%     problem is reformulated to an unconstrained problem based on Lagrangian dual transform \cite{shen2018fractional2}, quadratic transform \cite{shen2018fractional},
+%     and scattering-reactance relationship \cite{shen2020modeling}.
+%     \item We propose another alternating optimization algorithm to solve the non-convex desgin of shared deployment. The optimal active beamforming 
+%     can be obtained by WMMSE framework and Semidefinite Relaxation (SDR) \cite{luo2010semidefinite}. The passive beamforming is optimized using the same method as 
+%     separated deployment.
+% \end{enumerate}
